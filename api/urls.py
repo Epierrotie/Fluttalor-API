@@ -21,13 +21,22 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 from api.view import UserCreate
+from contact.view import ContactApi
+from label.view import LabelApi
+
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('api/contact', ContactApi, 'contact')
+router.register('api/label', LabelApi, 'label')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api/register/', UserCreate.as_view({'post': 'create'}), name='register'),
-    path('api/login/', TokenObtainPairView.as_view(), name='login'),
-    path('api/', include('rest_framework.urls', namespace='logout')),
+    path('api/user/register/', UserCreate.as_view({'post': 'create'}), name='register'),
+    path('api/user/login/', TokenObtainPairView.as_view(), name='login'),
+    path('api/user/', include('rest_framework.urls', namespace='logout')),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-]
+
+] + router.urls
