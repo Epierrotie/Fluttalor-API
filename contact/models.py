@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from label.models import Label
 
 # Create your models here.
 class Contact(models.Model):
@@ -14,6 +15,8 @@ class Contact(models.Model):
 
     icon = models.ImageField(upload_to='files/ContactImg', null=True, blank=True)
 
+    labels = models.ManyToManyField(Label)
+
     def __str__(self):
         name = self.nickname
         if name is None:
@@ -21,4 +24,4 @@ class Contact(models.Model):
         if name is None:
             name = self.lastname
 
-        return "name"
+        return name
