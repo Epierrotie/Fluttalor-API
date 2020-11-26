@@ -131,3 +131,6 @@ dmypy.json
 # Migrations
 !migrations/__init__.py
 migrations/
+
+# files
+files/
