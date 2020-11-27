@@ -13,8 +13,8 @@ class LabelSerializer(serializers.Serializer):
 
         return label
 
-    def update(self, label, validated_data):
-        label.name = validated_data.get('name', label.name)
+    def update(self, label, data):
+        label.name = data.get('name', label.name)
 
         label.save()
 

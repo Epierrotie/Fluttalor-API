@@ -3,16 +3,34 @@ from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
-    email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all(), message="A user with that email already exists.")])
+    pk = serializers.IntegerField(read_only=True, required=False)
 
-    class Meta:
-        model = User
-        fields = ('username', 'password', 'email')
+    username = serializers.CharField(required=False)
+    email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all(), message="A user with that email already exists.")], required=False)
+
+    password = serializers.CharField(write_only=True, required=False)
 
     def create(self, validated_data):
         password = validated_data.pop('password')
         user = User(**validated_data)
         user.set_password(password)
+
         user.save()
+        
         return user
+
+    def update(self, user, data):
+        user.username = data.get('username', user.username)
+        user.email = data.get('email', user.email)
+
+        password = data.get('password', None)
+        if password is not None:
+            user.set_password(password)
+
+        user.save()
+
+        return user
+
+    class Meta:
+        model = User
+        fields = ('pk', 'username', 'password', 'email')
