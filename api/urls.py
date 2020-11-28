@@ -20,9 +20,9 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-from api.view import UserApi, UserCreate
-from contact.view import ContactApi
-from label.view import LabelApi
+from api.views import UserApi, UserCreate
+from contact.views import ContactApi
+from label.views import LabelApi
 
 from rest_framework import routers
 
