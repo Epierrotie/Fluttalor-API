@@ -28,10 +28,8 @@ SECRET_KEY = 'xy*ehd7rk)-y#ukos@jmb*p!odj1%bg)ulztjig8w9x(47unnc'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "10.0.2.2",
-    "localhost"
+    "fluttalor.herokuapp.com"
 ]
-
 
 # Application definition
 
