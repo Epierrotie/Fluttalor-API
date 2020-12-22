@@ -59,12 +59,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'api.urls'
 
+STATIC_ROOT = join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-
-print(dirname(BASE_DIR))
-STATICFILES_DIRS = (
-    join(dirname(BASE_DIR), "Fluttalor-API/static/"),
-)
 
 TEMPLATES = [
     {
