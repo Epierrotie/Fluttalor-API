@@ -13,7 +13,7 @@ class Contact(models.Model):
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    icon = models.ImageField(upload_to='files/contact', null=True, blank=True)
+    icon = models.ImageField(upload_to='static/contact', null=True, blank=True)
 
     labels = models.ManyToManyField(Label)
 
