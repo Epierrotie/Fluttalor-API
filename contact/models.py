@@ -15,7 +15,7 @@ class Contact(models.Model):
 
     icon = models.ImageField(upload_to='static/contact', null=True, blank=True)
 
-    labels = models.ManyToManyField(Label)
+    labels = models.ManyToManyField(Label, blank=True)
 
     def __str__(self):
         name = self.nickname
