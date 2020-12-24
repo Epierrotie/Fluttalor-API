@@ -4,12 +4,12 @@ from label.models import Label
 
 # Create your models here.
 class Contact(models.Model):
-    nickname = models.CharField("nickname", max_length=45, null=True, blank=True, default='')
-    firstname = models.CharField("firstname", max_length=45, null=True, blank=True, default='')
-    lastname = models.CharField("lastname", max_length=45, null=True, blank=True, default='')
+    nickname = models.CharField("nickname", max_length=45, blank=True)
+    firstname = models.CharField("firstname", max_length=45, blank=True)
+    lastname = models.CharField("lastname", max_length=45, blank=True)
 
-    email = models.EmailField("email", max_length=255, null=True, blank=True, default='')
-    phone = models.CharField("phone", max_length=255, null=True, blank=True, default='')
+    email = models.EmailField("email", max_length=255, blank=True)
+    phone = models.CharField("phone", max_length=255, blank=True)
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
