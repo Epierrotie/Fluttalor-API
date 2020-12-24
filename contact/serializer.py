@@ -22,7 +22,7 @@ class ContactSerializer(serializers.Serializer):
     icon = serializers.ImageField(allow_null=True, required=False)
 
     labels = LabelContactSerializer(read_only=True, many=True)
-    labels_id = serializers.PrimaryKeyRelatedField(queryset=Label.objects.all(), write_only=True, many=True)
+    labels_id = serializers.PrimaryKeyRelatedField(queryset=Label.objects.all(), write_only=True, many=True, required=False)
 
     def create(self, validated_data):
         labels = validated_data.pop('labels_id')
