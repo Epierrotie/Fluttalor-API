@@ -8,7 +8,7 @@ class LabelContactSerializer(serializers.Serializer):
 
     class Meta:
         model = Label
-        fields = ("__all__")
+        fields = ("pk", "name")
 
 class ContactSerializer(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True, required=False)
