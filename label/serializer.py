@@ -3,7 +3,7 @@ from contact.serializer import ContactSerializer
 from .models import Label
 
 class LabelSerializer(serializers.Serializer):
-    id = serializers.IntegerField(source='pk', required=False)
+    pk = serializers.IntegerField(required=False)
     name = serializers.CharField(max_length=45)
 
     def create(self, validated_data):
