@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'xy*ehd7rk)-y#ukos@jmb*p!odj1%bg)ulztjig8w9x(47unnc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "fluttalor.heroku.com"
@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'api.urls'
 
 STATIC_ROOT = join(BASE_DIR, 'static')
-STATIC_URL = 'static'
+STATIC_URL = 'static/'
 
 TEMPLATES = [
     {
