@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 from django.conf import settings
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
 from rest_framework_simplejwt.views import (
@@ -43,4 +42,4 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
-] + router.urls + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + router.urls + static('staticfiles', document_root=settings.STATIC_ROOT)
