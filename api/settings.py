@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'api.urls'
 
 STATIC_ROOT = join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+STATIC_URL = 'static'
 
 TEMPLATES = [
     {
