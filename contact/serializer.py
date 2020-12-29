@@ -25,13 +25,14 @@ class ContactSerializer(serializers.Serializer):
     labels_id = serializers.PrimaryKeyRelatedField(queryset=Label.objects.all(), write_only=True, many=True, required=False)
 
     def create(self, validated_data):
-        labels = validated_data.pop('labels_id')
+        labels = validated_data.pop('labels_id', None)
 
         if 'nickname' not in validated_data and 'firstname' not in validated_data and 'lastname' not in validated_data:
             raise serializers.ValidationError("You must assign at least one of those : a firstname, lastname or nickname")
         contact = Contact.objects.create(**validated_data)
 
-        contact.labels.set(labels)
+        if labels is not None:
+            contact.labels.set(labels)
 
         contact.save()
 
