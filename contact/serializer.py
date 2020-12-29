@@ -12,12 +12,12 @@ class LabelContactSerializer(serializers.Serializer):
 
 class ContactSerializer(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True, required=False)
-    nickname = serializers.CharField(max_length=45, allow_null=True, required=False)
-    firstname = serializers.CharField(max_length=45, allow_null=True, required=False)
-    lastname = serializers.CharField(max_length=45, allow_null=True, required=False)
+    nickname = serializers.CharField(max_length=45, allow_blank=True, required=False)
+    firstname = serializers.CharField(max_length=45, allow_blank=True, required=False)
+    lastname = serializers.CharField(max_length=45, allow_blank=True, required=False)
 
-    email = serializers.EmailField(max_length=255, allow_null=True, required=False)
-    phone = serializers.CharField(max_length=255, allow_null=True, required=False)
+    email = serializers.EmailField(max_length=255, allow_blank=True, required=False)
+    phone = serializers.CharField(max_length=255, allow_blank=True, required=False)
 
     icon = serializers.ImageField(allow_null=True, required=False)
 
