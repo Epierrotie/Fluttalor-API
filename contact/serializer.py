@@ -19,6 +19,8 @@ class ContactSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=255, allow_blank=True, required=False)
     phone = serializers.CharField(max_length=255, allow_blank=True, required=False)
 
+    address = serializers.CharField(max_length=255, allow_blank=True, required=False)
+
     icon = serializers.ImageField(allow_null=True, required=False)
 
     labels = LabelContactSerializer(read_only=True, many=True)
@@ -49,6 +51,8 @@ class ContactSerializer(serializers.Serializer):
 
         contact.email = data.get('email', contact.email)
         contact.phone = data.get('phone', contact.phone)
+
+        contact.address = data.get('address', contact.address)
 
         contact.icon = data.get('icon', contact.icon)
 

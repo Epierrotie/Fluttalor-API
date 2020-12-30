@@ -10,6 +10,7 @@ class Contact(models.Model):
 
     email = models.EmailField("email", max_length=255, blank=True, default="")
     phone = models.CharField("phone", max_length=255, blank=True, default="")
+    address = models.CharField("address", max_length=255, blank=True, default="")
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
