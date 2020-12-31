@@ -15,28 +15,32 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView,
 )
-from api.views import UserApi, UserCreate
+from api.views import UserApi
 from contact.views import ContactApi
 from label.views import LabelApi
 
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('api/contact', ContactApi, 'contact')
-router.register('api/label', LabelApi, 'label')
-router.register('api/user', UserApi, 'user')
+router.register('contact', ContactApi, 'contact')
+router.register('label', LabelApi, 'label')
+router.register('user', UserApi, 'user')
+
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Fluttalor API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/user/register/', UserCreate.as_view({'post': 'create'}), name='register'),
-    path('api/user/login/', TokenObtainPairView.as_view(), name='login'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-
+    path('account/login/', TokenObtainPairView.as_view(), name='login'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/', schema_view)
 ] + router.urls

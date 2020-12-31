@@ -4,6 +4,7 @@ from label.models import Label
 
 # Create your models here.
 class Contact(models.Model):
+    profile = models.BooleanField("profile", default=False)
     nickname = models.CharField("nickname", max_length=45, blank=True, default="")
     firstname = models.CharField("firstname", max_length=45, blank=True, default="")
     lastname = models.CharField("lastname", max_length=45, blank=True, default="")
@@ -25,6 +26,6 @@ class Contact(models.Model):
         if name == "":
             name = self.lastname
         if name == "":
-            name = self.pk
+            name = self.email
 
         return name

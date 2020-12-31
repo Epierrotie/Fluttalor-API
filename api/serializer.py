@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from contact.models import Contact
 from rest_framework.validators import UniqueValidator
 
 class UserSerializer(serializers.ModelSerializer):
@@ -16,7 +17,11 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
 
         user.save()
-        
+
+        contact = Contact(profile=True, nickname=user.email, email=user.email, owner=user)
+
+        contact.save()
+
         return user
 
     def update(self, user, data):

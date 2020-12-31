@@ -12,6 +12,9 @@ class LabelContactSerializer(serializers.Serializer):
 
 class ContactSerializer(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True, required=False)
+
+    profile = serializers.BooleanField(read_only=True, required=False)
+
     nickname = serializers.CharField(max_length=45, allow_blank=True, required=False)
     firstname = serializers.CharField(max_length=45, allow_blank=True, required=False)
     lastname = serializers.CharField(max_length=45, allow_blank=True, required=False)
@@ -55,6 +58,12 @@ class ContactSerializer(serializers.Serializer):
         contact.address = data.get('address', contact.address)
 
         contact.icon = data.get('icon', contact.icon)
+
+
+        if contact.profile is True:
+            contact.owner.username = data.get('nickname', contact.nickname)
+            contact.owner.email = data.get('email', contact.email)
+            contact.owner.save()
 
         contact.save()
         return contact
