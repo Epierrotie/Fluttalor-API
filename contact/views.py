@@ -15,4 +15,4 @@ class ContactApi(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get_queryset(self):
-        return Contact.objects.filter(owner=self.request.user)
+        return Contact.objects.filter(owner=self.request.user).order_by("-profile", "nickname", "firstname", "lastname")
