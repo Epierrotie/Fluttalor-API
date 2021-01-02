@@ -17,4 +17,4 @@ class LabelApi(viewsets.ModelViewSet):
 
 
     def get_queryset(self):
-        return Label.objects.filter(owner=self.request.user)
+        return Label.objects.filter()

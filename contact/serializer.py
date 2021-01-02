@@ -44,9 +44,10 @@ class ContactSerializer(serializers.Serializer):
         return contact
 
     def update(self, contact, data):
-        labels = data.pop('labels_id')
+        labels = data.pop('labels_id', None)
 
-        contact.labels.set(labels)
+        if labels is not None:
+            contact.labels.set(labels)
 
         contact.nickname = data.get('nickname', contact.nickname)
         contact.firstname = data.get('firstname', contact.firstname)
@@ -58,7 +59,6 @@ class ContactSerializer(serializers.Serializer):
         contact.address = data.get('address', contact.address)
 
         contact.icon = data.get('icon', contact.icon)
-
 
         if contact.profile is True:
             contact.owner.username = data.get('email', contact.email)
