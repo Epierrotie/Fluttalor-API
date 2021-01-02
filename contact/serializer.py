@@ -61,7 +61,7 @@ class ContactSerializer(serializers.Serializer):
 
 
         if contact.profile is True:
-            contact.owner.username = data.get('nickname', contact.nickname)
+            contact.owner.username = data.get('email', contact.email)
             contact.owner.email = data.get('email', contact.email)
             contact.owner.save()
 
