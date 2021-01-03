@@ -28,7 +28,7 @@ class ModelsTestCase(APITestCase):
         response = client.post('/contact/', self.post_data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data, {'pk': 1, 'profile': False, 'nickname': 'test', 'firstname': '', 'lastname': '', 'email': 'ok@gmail.com', 'phone': '', 'address': '', 'icon': None, 'labels': []})
+        self.assertEqual(response.data, {'pk': 2, 'profile': False, 'nickname': 'test', 'firstname': '', 'lastname': '', 'email': 'ok@gmail.com', 'phone': '', 'address': '', 'icon': None, 'labels': []})
 
     def test_modify_contact(self):
         client = APIClient()
@@ -46,17 +46,16 @@ class ModelsTestCase(APITestCase):
         response = client.get('/contact/')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, [{'pk': 1, 'profile': False, 'nickname': 'test', 'firstname': '', 'lastname': '', 'email': 'ok@gmail.com', 'phone': '', 'address': '', 'icon': None, 'labels': []}])
+        self.assertEqual(response.data, [{'pk': 1, 'profile': False, 'nickname': 'Boris', 'firstname': '', 'lastname': '', 'email': 'boris@test.com', 'phone': '', 'address': '', 'icon': None, 'labels': []}])
 
     def test_retrieve_contact(self):
         client = APIClient()
         client.force_authenticate(user=self.user)
 
-        print(self.contact.pk)
         response = client.get('/contact/'+ str(self.contact.pk) + '/')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, {'pk': 1, 'profile': False, 'nickname': 'test', 'firstname': '', 'lastname': '', 'email': 'ok@gmail.com', 'phone': '', 'address': '', 'icon': None, 'labels': []})
+        self.assertEqual(response.data, {'pk': 1, 'profile': False, 'nickname': 'Boris', 'firstname': '', 'lastname': '', 'email': 'boris@test.com', 'phone': '', 'address': '', 'icon': None, 'labels': []})
 
     def test_remove_contact(self):
         client = APIClient()
